@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Product } from '../types/Product';
+import classes from './ProductDetails.module.css';
 
 interface ProductDetailsProps {
   products: Product[];
@@ -55,42 +56,42 @@ export default function ProductDetails({ products }: ProductDetailsProps) {
   };
 
   if (!product) {
-    return <div className="product-not-found">Product not found</div>;
+    return <div className={classes["product-not-found"]}>Product not found</div>;
   }
 
   return (
-    <div className="product-details">
-      <div className="product-gallery" data-testid="product-gallery">
-        <div className="gallery-thumbnails">
+    <div className={classes["product-details"]}>
+      <div className={classes["product-gallery"]} data-testid="product-gallery">
+        <div className={classes["gallery-thumbnails"]}>
           {product.gallery.map((image, index) => (
             <img 
               key={index}
               src={image}
               alt={`${product.name} - view ${index + 1}`}
-              className={`thumbnail ${index === currentImageIndex ? 'active' : ''}`}
+              className={`${classes.thumbnail} ${index === currentImageIndex ? `${classes.active}` : ''}`}
               onClick={() => setCurrentImageIndex(index)}
             />
           ))}
         </div>
-        <div className="main-image-container">
-          <button className="gallery-nav prev" onClick={handlePrevImage}>&#10094;</button>
+        <div className={classes["main-image-container"]}>
+          <button className={classes["gallery-nav prev"]} onClick={handlePrevImage}>&#10094;</button>
           <img 
             src={product.gallery[currentImageIndex]} 
             alt={product.name} 
-            className="main-image"
+            className={classes["main-image"]}
           />
-          <button className="gallery-nav next" onClick={handleNextImage}>&#10095;</button>
+          <button className={classes["gallery-nav next"]} onClick={handleNextImage}>&#10095;</button>
         </div>
       </div>
       
-      <div className="product-info">
-        <h1 className="product-brand">{product.brand}</h1>
-        <h2 className="product-name">{product.name}</h2>
+      <div className={classes["product-info"]}>
+        <h1 className={classes["product-brand"]}>{product.brand}</h1>
+        <h2 className={classes["product-name"]}>{product.name}</h2>
         
         {product.attributes.map(attribute => (
           <div 
             key={attribute.id} 
-            className="attribute-container"
+            className={classes["attribute-container"]}
           >
             <label>{attribute.name}</label>
             <select 
@@ -104,8 +105,8 @@ export default function ProductDetails({ products }: ProductDetailsProps) {
           </div>
         ))}
 
-        <div className="product-price">{formatPrice()}</div>
-        <div className="product-description">{product.description}</div>
+        <div className={classes["product-price"]}>{formatPrice()}</div>
+        <div className={classes["product-description"]}>{product.description}</div>
       </div>
     </div>
   );
