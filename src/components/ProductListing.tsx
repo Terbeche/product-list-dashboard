@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Product } from '../types/Product';
+import classes from './ProductListing.module.css';
 
 interface ProductListingProps {
   products: Product[];
@@ -31,30 +32,30 @@ export default function ProductListing({
   };
 
   return (
-    <div className="product-listing">
-      <h1 className="category-title">{activeCategory.toUpperCase()}</h1>
+    <div className={classes["product-listing"]}>
+      <h1 className={classes["category-title"]}>{activeCategory.toUpperCase()}</h1>
       
-      <div className="products-grid">
+      <div className={classes["products-grid"]}>
         {categoryProducts.map((product) => (
           <div 
             key={product.id}
-            className={`product-card ${!product.inStock ? 'out-of-stock' : ''}`}
+            className={`${classes["product-card"]} ${!product.inStock ? `${classes["out-of-stock"]}` : ''}`}
             data-testid={`product-${product.name.toLowerCase().replace(/\s+/g, '-')}`}
           >
-            <div className="product-image-container">
+            <div className={classes["product-image-container"]}>
               <img 
                 src={product.gallery[0]} 
                 alt={product.name} 
-                className={`product-image ${!product.inStock ? 'out-of-stock-image' : ''}`}
+                className={`${classes["product-image"]} ${!product.inStock ?  `${classes["out-of-stock-image"]}` : ''}`}
               />
               {!product.inStock && (
-                <span className="out-of-stock-label">OUT OF STOCK</span>
+                <span className={classes["out-of-stock-label"]}>OUT OF STOCK</span>
               )}
             </div>
             
-            <div className="product-info">
-              <p className="product-name">{product.name}</p>
-              <p className="product-price">{formatPrice(product)}</p>
+            <div className={classes["product-info"]}>
+              <p className={classes["product-name"]}>{product.name}</p>
+              <p className={classes["product-price"]}>{formatPrice(product)}</p>
             </div>
           </div>
         ))}

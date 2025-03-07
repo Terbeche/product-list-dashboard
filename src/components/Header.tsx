@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import  classes from './Header.module.css';
 
 interface HeaderProps {
   activeCategory: string;
@@ -23,13 +24,13 @@ export default function Header({
     navigate(`/category/${category}`);
   };
   return (
-    <header className="header">
-      <nav className="navigation">
-        <div className="categories">
+    <header className={classes.header}>
+      <nav>
+        <div className={classes.categories}>
           {categories.map((category) => (
             <span
               key={category.name}
-              className={`category ${activeCategory === category.name ? 'active' : ''}`}
+              className={`${classes.category} ${activeCategory === category.name ? `${classes.active}` : ''}`}
               onClick={() => handleCategoryClick(category.name)}
               data-testid={
                 activeCategory === category.name
