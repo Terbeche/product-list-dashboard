@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Product } from '../types/Product';
 import classes from './ProductListing.module.css';
 
@@ -12,9 +12,10 @@ interface ProductListingProps {
 export default function ProductListing({ 
   products, 
   activeCategory, 
-  setActiveCategory
+  setActiveCategory 
 }: ProductListingProps) {
   const { categoryName } = useParams<{ categoryName: string }>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (categoryName && categoryName !== activeCategory) {
@@ -25,6 +26,10 @@ export default function ProductListing({
   const categoryProducts = activeCategory === 'all' 
     ? products 
     : products.filter(product => product.category === activeCategory);
+
+  const handleProductClick = (productId: string) => {
+    navigate(`/product/${productId}`);
+  };
 
   const formatPrice = (product: Product) => {
     const price = product.prices[0];
@@ -40,6 +45,7 @@ export default function ProductListing({
           <div 
             key={product.id}
             className={`${classes["product-card"]} ${!product.inStock ? `${classes["out-of-stock"]}` : ''}`}
+            onClick={() => handleProductClick(product.id)}
             data-testid={`product-${product.name.toLowerCase().replace(/\s+/g, '-')}`}
           >
             <div className={classes["product-image-container"]}>

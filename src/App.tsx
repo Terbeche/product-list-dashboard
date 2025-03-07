@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import ProductListing from './components/ProductListing';
+import ProductDetails from './components/ProductDetails';
 
 import { productList } from './data';
 
@@ -26,6 +27,14 @@ function App() {
                 products={products} 
                 activeCategory={activeCategory}
                 setActiveCategory={setActiveCategory}
+              />
+            } 
+          />
+          <Route 
+            path="/product/:productId" 
+            element={
+              <ProductDetails 
+                products={products}
               />
             } 
           />
