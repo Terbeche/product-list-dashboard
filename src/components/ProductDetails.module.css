@@ -109,6 +109,16 @@
   color: #555;
 }
 
+.add-to-cart {
+  display: flex;
+  gap: 1rem;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  background-color: #2fcc2a;
+  padding: 1rem;
+}
+
 @media (max-width: 1024px) {
   .product-details {
     flex-direction: column;

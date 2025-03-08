@@ -32,3 +32,29 @@
     font-weight: bold;
     transform: scale(1.05);
 }
+
+.cart-container {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    gap:0rem;
+}
+
+.cart-count {
+    color: rgb(0, 0, 0);
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    align-self: center;
+    justify-self: center;
+}
+
+.cart-button {
+    color: rgb(0, 0, 0);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}

@@ -5,9 +5,10 @@ import classes from './ProductDetails.module.css';
 
 interface ProductDetailsProps {
   products: Product[];
+  addToCart: (product: Product, selectedAttributes: Record<string, string>) => void;
 }
 
-export default function ProductDetails({ products }: ProductDetailsProps) {
+export default function ProductDetails({ products, addToCart }: ProductDetailsProps) {
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
@@ -33,6 +34,17 @@ export default function ProductDetails({ products }: ProductDetailsProps) {
       ...prev,
       [attributeId]: itemId
     }));
+  };
+
+  const handleAddToCart = () => {
+    if (product && isAllAttributesSelected()) {
+      addToCart(product, selectedAttributes);
+    }
+  };
+
+  const isAllAttributesSelected = () => {
+    if (!product) return false;
+    return product.attributes.every(attr => selectedAttributes[attr.id]);
   };
 
   const formatPrice = () => {
@@ -106,6 +118,13 @@ export default function ProductDetails({ products }: ProductDetailsProps) {
         ))}
 
         <div className={classes["product-price"]}>{formatPrice()}</div>
+        <button 
+          className={classes["add-to-cart"]} 
+          onClick={handleAddToCart}
+          disabled={!isAllAttributesSelected()}
+        >
+          Add to Cart
+        </button>
         <div className={classes["product-description"]}>{product.description}</div>
       </div>
     </div>

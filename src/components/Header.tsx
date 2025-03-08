@@ -1,16 +1,28 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import  CartOverlay from './CartOverlay';
 import  classes from './Header.module.css';
+import { BsCart2 } from 'react-icons/bs';
 
 interface HeaderProps {
   activeCategory: string;
   setActiveCategory: (category: string) => void;
+  cartItemsCount: number;
+  cartItems: any[];
+  updateQuantity: (productId: string, attributes: Record<string, string>, change: number) => void;
+  placeOrder: () => void;
 }
 
 export default function Header({ 
   activeCategory, 
   setActiveCategory, 
+  cartItemsCount,
+  cartItems,
+  updateQuantity,
+  placeOrder
 }: HeaderProps) {
   
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const navigate = useNavigate();
   
   const categories = [
@@ -18,6 +30,10 @@ export default function Header({
     { name: "tech" },
     { name: "clothes" }
   ];
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
@@ -41,8 +57,29 @@ export default function Header({
               {category.name.toUpperCase()}
             </span>
           ))}
+          <div className={classes["cart-container"]}>
+            <BsCart2 
+              className={classes["cart-button"]}
+              onClick={toggleCart}
+              data-testid="cart-btn"
+            />
+              {cartItemsCount > 0 && (
+                <span className={classes["cart-count"]}>{cartItemsCount}</span>
+              )}
+          </div>
         </div>
       </nav>
+      {isCartOpen && (
+        <>
+          <div onClick={toggleCart}></div>
+          <CartOverlay 
+            onClose={toggleCart} 
+            cartItems={cartItems}
+            updateQuantity={updateQuantity}
+            placeOrder={placeOrder}
+          />
+        </>
+      )}
     </header>
   );
 }
