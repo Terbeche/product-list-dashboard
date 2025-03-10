@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Product } from '../types/Product';
+import { AttributeSet } from '../types/Attribute';
 import classes from './ProductDetails.module.css';
 import parse from 'html-react-parser';
+
 interface ProductDetailsProps {
   products: Product[];
   addToCart: (product: Product, selectedAttributes: Record<string, string>) => void;
@@ -67,6 +69,27 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
     );
   };
 
+  const renderAttributeSelector = (attribute: AttributeSet) => {
+    console.log(attribute);
+    const attributeName = attribute.name.toLowerCase();
+    const isAttributeColor = attributeName === 'color'
+
+      return (
+        <div className={classes["attribute-boxes"]}>
+          {attribute.items.map(item => (
+            <div 
+              key={item.id}
+              className={`${classes["attribute-box"]} ${classes["custom-box"]} ${classes["color-box"]} ${selectedAttributes[attribute.id] === item.id ? classes["selected"] : ''}`}
+              style={isAttributeColor ? { backgroundColor: item.value } : {}}
+              onClick={() => handleAttributeChange(attribute.id, item.id)}
+              >
+              {!isAttributeColor && item.value}
+            </div>
+          ))}
+        </div>
+      );
+  };
+
   if (!product) {
     return <div className={classes["product-not-found"]}>Product not found</div>;
   }
@@ -80,24 +103,23 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
               key={index}
               src={image}
               alt={`${product.name} - view ${index + 1}`}
-              className={`${classes.thumbnail} ${index === currentImageIndex ? `${classes.active}` : ''}`}
+              className={`${classes.thumbnail} ${index === currentImageIndex ? classes.active : ''}`}
               onClick={() => setCurrentImageIndex(index)}
             />
           ))}
         </div>
         <div className={classes["main-image-container"]}>
-          <button className={classes["gallery-nav prev"]} onClick={handlePrevImage}>&#10094;</button>
+          <button className={`${classes["gallery-nav"]} ${classes.prev}`} onClick={handlePrevImage}>&#10094;</button>
           <img 
             src={product.gallery[currentImageIndex]} 
             alt={product.name} 
             className={classes["main-image"]}
           />
-          <button className={classes["gallery-nav next"]} onClick={handleNextImage}>&#10095;</button>
+          <button className={`${classes["gallery-nav"]} ${classes.next}`} onClick={handleNextImage}>&#10095;</button>
         </div>
       </div>
       
       <div className={classes["product-info"]}>
-        <h1 className={classes["product-brand"]}>{product.brand}</h1>
         <h2 className={classes["product-name"]}>{product.name}</h2>
         
         {product.attributes.map(attribute => (
@@ -105,18 +127,11 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
             key={attribute.id} 
             className={classes["attribute-container"]}
           >
-            <label>{attribute.name}</label>
-            <select 
-              value={selectedAttributes[attribute.id]}
-              onChange={e => handleAttributeChange(attribute.id, e.target.value)}
-            >
-              {attribute.items.map(item => (
-                <option key={item.id} value={item.id}>{item.displayValue}</option>
-              ))}
-            </select>
+            <label className={classes["attribute-label"]}>{attribute.name}:</label>
+            {renderAttributeSelector(attribute as AttributeSet)}
           </div>
         ))}
-        <div><b>PRICE:</b></div>
+        <div className={classes["price-label"]}><b>PRICE:</b></div>
         <div className={classes["product-price"]}>{formatPrice()}</div>
         <button 
           className={classes["add-to-cart"]} 
@@ -124,7 +139,7 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
           disabled={!isAllAttributesSelected()}
         >
           ADD TO CART
-        </button>
+        </button>        
         <div className={classes["product-description"]}>{parse(product.description)}</div>
       </div>
     </div>
