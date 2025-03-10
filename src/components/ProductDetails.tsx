@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Product } from '../types/Product';
 import classes from './ProductDetails.module.css';
-
+import parse from 'html-react-parser';
 interface ProductDetailsProps {
   products: Product[];
   addToCart: (product: Product, selectedAttributes: Record<string, string>) => void;
@@ -116,16 +116,16 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
             </select>
           </div>
         ))}
-
+        <div><b>PRICE:</b></div>
         <div className={classes["product-price"]}>{formatPrice()}</div>
         <button 
           className={classes["add-to-cart"]} 
           onClick={handleAddToCart}
           disabled={!isAllAttributesSelected()}
         >
-          Add to Cart
+          ADD TO CART
         </button>
-        <div className={classes["product-description"]}>{product.description}</div>
+        <div className={classes["product-description"]}>{parse(product.description)}</div>
       </div>
     </div>
   );

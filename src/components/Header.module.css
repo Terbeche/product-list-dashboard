@@ -15,7 +15,6 @@
 .category {
     cursor: pointer;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
     color: #000000;
     font-size: 1rem;
     font-weight: 500;
@@ -31,6 +30,7 @@
     color: rgb(39, 223, 39);
     font-weight: bold;
     transform: scale(1.05);
+    border-bottom: solid rgb(39, 223, 39);
 }
 
 .cart-container {
