@@ -28,10 +28,6 @@ export default function ProductListing({
     }
   }, [categoryName, activeCategory, setActiveCategory]);
 
-  const categoryProducts = activeCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === activeCategory);
-
   const handleProductClick = (productId: string) => {
     navigate(`/product/${productId}`);
   };
@@ -47,7 +43,7 @@ export default function ProductListing({
         defaultAttributes[attr.id] = attr.items[0].id;
       }
     });
-    console.log(defaultAttributes)
+
     addToCart(product, defaultAttributes);
   };
 
@@ -61,7 +57,7 @@ export default function ProductListing({
       <h1 className={classes["category-title"]}>{activeCategory.toUpperCase()}</h1>
       
       <div className={classes["products-grid"]}>
-        {categoryProducts.map((product) => (
+        {products.map((product) => (
           <div 
             key={product.id}
             className={`${classes["product-card"]} ${!product.inStock ? `${classes["out-of-stock"]}` : ''}`}

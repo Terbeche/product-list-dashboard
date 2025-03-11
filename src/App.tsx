@@ -4,13 +4,61 @@ import Header from './components/Header';
 import ProductListing from './components/ProductListing';
 import ProductDetails from './components/ProductDetails';
 import { Product } from './types/Product';
+import { useQuery, gql } from '@apollo/client';
+import { Category } from './types/Category';
 
-import { productList } from './data';
+const GET_CATEGORIES = gql`
+  query GetCategories {
+    categories {
+      id
+      name
+    }
+  }
+`;
+
+const GET_PRODUCTS = gql`
+  query GetProducts($category: String) {
+    products(category: $category) {
+      id
+      name
+      inStock
+      gallery
+      description
+      brand
+      prices {
+        amount
+        currency {
+          label
+          symbol
+        }
+      }
+      attributes {
+        id
+        name
+        type
+        items {
+          id
+          displayValue
+          value
+        }
+      }
+    }
+  }
+`;
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [cartItems, setCartItems] = useState<any[]>([]);
-  const products = productList.data.products;
+
+  const { loading: catLoading, error: catError, data: catData } = useQuery(GET_CATEGORIES);
+  const { loading: prodLoading, error: prodError, data: prodData } = useQuery(GET_PRODUCTS, {
+    variables: { category: activeCategory }
+  });
+  
+  const categories: Category[] = catData?.categories || [];
+  console.log(categories);
+  const products: Product[] = prodData?.products || [];
+  console.log(products);
   const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const addToCart = (product: Product, selectedAttributes: Record<string, string>) => {
@@ -56,9 +104,12 @@ function App() {
     setCartItems([]);
   };
 
+  if (catLoading || prodLoading) return <p>Loading...</p>;
+  if (catError || prodError) return <p>Error :</p>;
   return (
     <BrowserRouter>
-      <Header 
+      <Header
+        categories={categories}
         activeCategory={activeCategory} 
         setActiveCategory={setActiveCategory} 
         cartItemsCount={cartItemsCount}

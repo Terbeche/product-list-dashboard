@@ -5,6 +5,7 @@ import  classes from './Header.module.css';
 import { BsCart2 } from 'react-icons/bs';
 
 interface HeaderProps {
+  categories: { name: string }[];
   activeCategory: string;
   setActiveCategory: (category: string) => void;
   cartItemsCount: number;
@@ -13,7 +14,8 @@ interface HeaderProps {
   placeOrder: () => void;
 }
 
-export default function Header({ 
+export default function Header({
+  categories,
   activeCategory, 
   setActiveCategory, 
   cartItemsCount,
@@ -24,12 +26,6 @@ export default function Header({
   
   const [isCartOpen, setIsCartOpen] = useState(false);
   const navigate = useNavigate();
-  
-  const categories = [
-    { name: "all" },
-    { name: "tech" },
-    { name: "clothes" }
-  ];
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
