@@ -70,7 +70,6 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
   };
 
   const renderAttributeSelector = (attribute: AttributeSet) => {
-    console.log(attribute);
     const attributeName = attribute.name.toLowerCase();
     const isAttributeColor = attributeName === 'color'
 
