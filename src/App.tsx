@@ -56,9 +56,7 @@ function App() {
   });
   
   const categories: Category[] = catData?.categories || [];
-  console.log(categories);
   const products: Product[] = prodData?.products || [];
-  console.log(products);
   const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const addToCart = (product: Product, selectedAttributes: Record<string, string>) => {
@@ -104,6 +102,8 @@ function App() {
     setCartItems([]);
   };
 
+
+  // Update the loading and error logic => TODO
   if (catLoading || prodLoading) return <p>Loading...</p>;
   if (catError || prodError) return <p>Error :</p>;
   return (
