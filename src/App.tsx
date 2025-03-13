@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import ProductListing from './components/ProductListing';
@@ -59,7 +59,11 @@ const CREATE_ORDER = gql`
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    // Retrieve cartItems from localStorage if available
+    const savedCart = localStorage.getItem('cartItems');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
   const { loading: catLoading, error: catError, data: catData } = useQuery(GET_CATEGORIES);
   const { loading: prodLoading, error: prodError, data: prodData } = useQuery(GET_PRODUCTS, {
@@ -71,6 +75,11 @@ function App() {
   const categories: Category[] = catData?.categories || [];
   const products: Product[] = prodData?.products || [];
   const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (product: Product, selectedAttributes: Record<string, string>) => {
     // Check if the product with the same attributes already exists in the cart
