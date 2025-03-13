@@ -4,8 +4,9 @@ import Header from './components/Header';
 import ProductListing from './components/ProductListing';
 import ProductDetails from './components/ProductDetails';
 import { Product } from './types/Product';
-import { useQuery, gql } from '@apollo/client';
+import { useMutation, useQuery, gql } from '@apollo/client';
 import { Category } from './types/Category';
+import { CartItem } from './types/CartItem';
 
 const GET_CATEGORIES = gql`
   query GetCategories {
@@ -46,15 +47,27 @@ const GET_PRODUCTS = gql`
   }
 `;
 
+const CREATE_ORDER = gql`
+  mutation CreateOrder($items: [String!]!) {
+    createOrder(items: $items) {
+      id
+      total
+    }
+  }
+`;
+
+
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const { loading: catLoading, error: catError, data: catData } = useQuery(GET_CATEGORIES);
   const { loading: prodLoading, error: prodError, data: prodData } = useQuery(GET_PRODUCTS, {
     variables: { category: activeCategory }
   });
   
+  const [createOrder, { loading, error }] = useMutation(CREATE_ORDER);
+
   const categories: Category[] = catData?.categories || [];
   const products: Product[] = prodData?.products || [];
   const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -96,10 +109,23 @@ function App() {
     setCartItems(updatedCartItems);
   };
 
-  // Handler for placing order
   const placeOrder = () => {
-    console.log("Order placed:", cartItems);
-    setCartItems([]);
+    const orderItems = cartItems.map(item => JSON.stringify({
+      product_id: item.product.id,
+      quantity: item.quantity,
+      selected_attributes: item.selectedAttributes
+    }));
+    console.log('Order items:', orderItems);
+    createOrder({
+      variables: {
+        items: orderItems
+      }
+    }).then (() => {
+      console.log("Order placed:", cartItems);
+      setCartItems([]);
+    }).catch(err => {
+      console.error('Error creating order:', err);
+    });
   };
 
 
