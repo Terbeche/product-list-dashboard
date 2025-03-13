@@ -69,7 +69,6 @@ export default function Header({
         <>
           <div onClick={toggleCart}></div>
           <CartOverlay 
-            onClose={toggleCart} 
             cartItems={cartItems}
             updateQuantity={updateQuantity}
             placeOrder={placeOrder}

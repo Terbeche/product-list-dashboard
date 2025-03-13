@@ -8,7 +8,6 @@ interface CartItem {
 }
 
 interface CartOverlayProps {
-  onClose: () => void;
   cartItems?: CartItem[];
   updateQuantity?: (productId: string, attributes: Record<string, string>, change: number) => void;
   placeOrder?: () => void;
@@ -16,7 +15,6 @@ interface CartOverlayProps {
 }
 
 export default function CartOverlay({ 
-  onClose, 
   cartItems = [], 
   updateQuantity = () => {}, 
   placeOrder = () => {},
