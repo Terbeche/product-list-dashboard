@@ -1,8 +1,16 @@
 .header {
+    position: fixed;
     padding: 1rem 2rem;
     display: flex;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 10rem;
+}
 
 .navbar {
     display: flex;
@@ -43,6 +51,7 @@
 .cart-container {
     cursor: pointer;
     display: flex;
+    margin-right: 3rem;
 }
 
 .cart-button {

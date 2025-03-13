@@ -36,7 +36,6 @@ export default function CartOverlay({
     <div className={classes["cart-overlay"]}>
       <div className={classes["cart-header"]}>
         <span className={classes["cart-title"]}>My Bag: {itemText}</span>
-        <button className={classes["close-button"]} onClick={onClose}>X</button>
       </div>
       
       <div className={classes["cart-items"]}>
@@ -45,7 +44,6 @@ export default function CartOverlay({
           return (
             <div key={`${item.product.id}-${index}`} className={classes["cart-item"]}>
               <div className={classes["item-details"]}>
-                <p className={classes["item-brand"]}>{item.product.brand}</p>
                 <p className={classes["item-name"]}>{item.product.name}</p>
                 <p className={classes["item-price"]}>
                   {price ? `${price.currency.symbol}${price.amount.toFixed(2)}` : ''}

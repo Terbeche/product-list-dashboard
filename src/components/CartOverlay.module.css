@@ -1,9 +1,9 @@
 .cart-overlay {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 5rem;
+    right: 2rem;
     width: 25rem;
-    height: 96%;
+    height: 80%;
     background: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
@@ -40,10 +40,10 @@
   .cart-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+
+    margin-bottom: 2rem;
+    border-bottom: 0.1rem solid #ddd;
+    padding-bottom: 1rem;
   }
   
   .item-details {
@@ -71,17 +71,17 @@
   }
   
   .text-option, .swatch-option {
-    padding: 5px;
-    border: 1px solid #ddd;
     cursor: pointer;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: white;
+    border: 1px solid #ddd;
   }
-  
-  .swatch-option {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-  }
-  
+
   .text-option.selected, .swatch-option.selected {
     background-color: #000;
     color: white;
@@ -91,22 +91,24 @@
   
   .quantity-controls {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     gap: 5px;
+    height: fit-content;
   }
   
   .quantity-button {
-    background: #333;
-    color: white;
-    border: none;
+    background: white;
+    color: black;
+    border: black solid 0.1rem;
     width: 25px;
     height: 25px;
     cursor: pointer;
   }
   
   .item-image img {
-    width: 50px;
-    height: 50px;
+    width: 100%;
     object-fit: cover;
   }
   
