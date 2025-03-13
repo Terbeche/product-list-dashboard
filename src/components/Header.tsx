@@ -37,7 +37,7 @@ export default function Header({
   };
   return (
     <header className={classes.header}>
-      <nav>
+      <nav className={classes.navbar}>
         <div className={classes.categories}>
           {categories.map((category) => (
             <span
@@ -53,7 +53,8 @@ export default function Header({
               {category.name.toUpperCase()}
             </span>
           ))}
-          <div className={classes["cart-container"]}>
+        </div>
+        <div className={classes["cart-container"]}>
             <BsCart2 
               className={classes["cart-button"]}
               onClick={toggleCart}
@@ -62,7 +63,6 @@ export default function Header({
               {cartItemsCount > 0 && (
                 <span className={classes["cart-count"]}>{cartItemsCount}</span>
               )}
-          </div>
         </div>
       </nav>
       {isCartOpen && (

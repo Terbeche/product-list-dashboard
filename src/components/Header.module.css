@@ -4,6 +4,13 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .categories {
     display: flex;
     align-items: flex-start;
@@ -34,27 +41,26 @@
 }
 
 .cart-container {
-    position: relative;
     cursor: pointer;
     display: flex;
-    gap:0rem;
-}
-
-.cart-count {
-    color: rgb(0, 0, 0);
-    padding: 0.2rem 0.5rem;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    align-self: center;
-    justify-self: center;
 }
 
 .cart-button {
     color: rgb(0, 0, 0);
-    padding: 0.5rem 1rem;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+}
+
+.cart-count {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0);
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    align-self: center;
+    margin-left: -0.7rem;
+    margin-top: -1rem;
 }
