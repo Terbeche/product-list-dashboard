@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import  CartOverlay from './CartOverlay';
 import  classes from './Header.module.css';
 import { BsCart2 } from 'react-icons/bs';
-
+import { CartItem } from '../types/CartItem';
+import { Category } from '../types/Category';
 interface HeaderProps {
-  categories: { name: string }[];
+  categories: Category[];
   activeCategory: string;
   setActiveCategory: (category: string) => void;
   cartItemsCount: number;
-  cartItems: any[];
+  cartItems: CartItem[];
   updateQuantity: (productId: string, attributes: Record<string, string>, change: number) => void;
   placeOrder: () => void;
 }
