@@ -13,6 +13,7 @@ interface HeaderProps {
   cartItems: CartItem[];
   updateQuantity: (productId: string, attributes: Record<string, string>, change: number) => void;
   placeOrder: () => void;
+  updateAttributes: (productId: string, currentAttributes: Record<string, string>, attributeId: string, newValue: string) => void;
 }
 
 export default function Header({
@@ -22,7 +23,8 @@ export default function Header({
   cartItemsCount,
   cartItems,
   updateQuantity,
-  placeOrder
+  placeOrder,
+  updateAttributes
 }: HeaderProps) {
   
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -73,6 +75,7 @@ export default function Header({
             cartItems={cartItems}
             updateQuantity={updateQuantity}
             placeOrder={placeOrder}
+            updateAttributes={updateAttributes}
           />
         </>
       )}

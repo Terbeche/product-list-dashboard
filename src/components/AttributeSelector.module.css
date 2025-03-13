@@ -1,0 +1,26 @@
+.attribute-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.attribute-box {
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  background-color: white;
+}
+
+.attribute-box.selected {
+  background-color: #000;
+  color: white;
+  border-color: #26a822;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #26a822;
+}

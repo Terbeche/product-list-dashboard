@@ -1,5 +1,7 @@
 import { Product } from '../types/Product';
 import classes from './CartOverlay.module.css';
+import AttributeSelector from './AttributeSelector';
+import { AttributeSet } from '../types/Attribute';
 
 interface CartItem {
   product: Product;
@@ -12,13 +14,15 @@ interface CartOverlayProps {
   updateQuantity?: (productId: string, attributes: Record<string, string>, change: number) => void;
   placeOrder?: () => void;
   currency?: { label: string; symbol: string };
+  updateAttributes?: (productId: string, currentAttributes: Record<string, string>, attributeId: string, newValue: string) => void;
 }
 
 export default function CartOverlay({ 
-  cartItems = [], 
+  cartItems = [],
   updateQuantity = () => {}, 
   placeOrder = () => {},
-  currency = { label: "USD", symbol: "$" }
+  currency = { label: "USD", symbol: "$" },
+  updateAttributes = () => {}
 }: CartOverlayProps) {
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => {
@@ -47,38 +51,20 @@ export default function CartOverlay({
                   {price ? `${price.currency.symbol}${price.amount.toFixed(2)}` : ''}
                 </p>
                 
-                {item.product.attributes.map(attr => (
+                {item.product.attributes.map((attribute: AttributeSet) => (
                   <div 
-                    key={attr.id} 
+                    key={attribute.id} 
                     className={classes["attribute-container"]}
-                    data-testid={`cart-item-attribute-${attr.id.toLowerCase()}`}
+                    data-testid={`cart-item-attribute-${attribute.id.toLowerCase()}`}
                   >
-                    <p className={classes["attribute-name"]}>{attr.name}:</p>
-                    <div className={classes["attribute-options"]}>
-                      {attr.items.map(option => {
-                        const isSelected = item.selectedAttributes[attr.id] === option.id;
-                        const testId = isSelected
-                          ? `cart-item-attribute-${attr.id.toLowerCase()}-${option.id.toLowerCase()}-selected`
-                          : `cart-item-attribute-${attr.id.toLowerCase()}-${option.id.toLowerCase()}`;
-                        
-                        return attr.type === 'swatch' ? (
-                          <div
-                            key={option.id}
-                            className={`${classes["swatch-option"]} ${isSelected ? `${classes.selected}` : ''}`}
-                            style={{ backgroundColor: option.value }}
-                            data-testid={testId}
-                          />
-                        ) : (
-                          <div
-                            key={option.id}
-                            className={`${classes["text-option"]} ${isSelected ? `${classes.selected}` : ''}`}
-                            data-testid={testId}
-                          >
-                            {option.value}
-                          </div>
-                        );
-                      })}
-                    </div>
+                    <p className={classes["attribute-name"]}>{attribute.name}:</p>
+                    <AttributeSelector
+                      attribute={attribute}
+                      selectedValue={item.selectedAttributes[attribute.id] || ''}
+                      onChange={(attributeId, newValue) => 
+                        updateAttributes(item.product.id, item.selectedAttributes, attributeId, newValue)
+                      }
+                    />
                   </div>
                 ))}
               </div>

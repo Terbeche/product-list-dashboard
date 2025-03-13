@@ -1,25 +1,14 @@
-type AttributeItem = {
-    displayValue: string;
-    value: string;
-    id: string;
-  };
+import { AttributeSet } from './Attribute';
   
-  type AttributeSet = {
-    id: string;
-    name: string;
-    type: string;
-    items: AttributeItem[];
-  };
-  
-  type Currency = {
-    label: string;
-    symbol: string;
-  };
-  
-  type Price = {
-    amount: number;
-    currency: Currency;
-  };
+type Currency = {
+  label: string;
+  symbol: string;
+};
+
+type Price = {
+  amount: number;
+  currency: Currency;
+};
   
 export type Product = {
     id: string;

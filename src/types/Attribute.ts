@@ -2,10 +2,10 @@ export type AttributeSet = {
     id: string;
     name: string;
     type: 'text' | 'swatch';
-    items: Attribute[];
+    items: AttributeItem[];
 };
 
-export type Attribute = {
+export type AttributeItem = {
     id: string;
     displayValue: string;
     value?: string;

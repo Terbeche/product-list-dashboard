@@ -50,7 +50,7 @@
     flex-grow: 1;
   }
   
-  .item-brand, .item-name {
+  .item-name {
     font-size: 14px;
     font-weight: bold;
   }
@@ -63,32 +63,7 @@
   .attribute-container {
     margin-top: 5px;
   }
-  
-  .attribute-options {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 3px;
-  }
-  
-  .text-option, .swatch-option {
-    cursor: pointer;
-    min-width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    background-color: white;
-    border: 1px solid #ddd;
-  }
 
-  .text-option.selected, .swatch-option.selected {
-    background-color: #000;
-    color: white;
-    border-color: #26a822;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #26a822;
-  }
-  
   .quantity-controls {
     display: flex;
     flex-direction: column;

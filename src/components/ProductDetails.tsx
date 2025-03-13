@@ -4,6 +4,7 @@ import { Product } from '../types/Product';
 import { AttributeSet } from '../types/Attribute';
 import classes from './ProductDetails.module.css';
 import parse from 'html-react-parser';
+import AttributeSelector from './AttributeSelector';
 
 interface ProductDetailsProps {
   products: Product[];
@@ -70,23 +71,13 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
   };
 
   const renderAttributeSelector = (attribute: AttributeSet) => {
-    const attributeName = attribute.name.toLowerCase();
-    const isAttributeColor = attributeName === 'color'
-
-      return (
-        <div className={classes["attribute-boxes"]}>
-          {attribute.items.map(item => (
-            <div 
-              key={item.id}
-              className={`${classes["attribute-box"]} ${classes["custom-box"]} ${classes["color-box"]} ${selectedAttributes[attribute.id] === item.id ? classes["selected"] : ''}`}
-              style={isAttributeColor ? { backgroundColor: item.value } : {}}
-              onClick={() => handleAttributeChange(attribute.id, item.id)}
-              >
-              {!isAttributeColor && item.value}
-            </div>
-          ))}
-        </div>
-      );
+    return (
+      <AttributeSelector
+        attribute={attribute}
+        selectedValue={selectedAttributes[attribute.id] || ''}
+        onChange={handleAttributeChange}
+      />
+    );
   };
 
   if (!product) {
