@@ -22,6 +22,7 @@ export default function AttributeSelector({
           className={`
             ${classes["attribute-box"]} 
             ${selectedValue === item.id ? classes["selected"] : ''}
+            ${isColorAttribute ? classes["color-box"] : ''}
           `}
           style={isColorAttribute ? { backgroundColor: item.value } : {}}
           onClick={() => onChange(attribute.id, item.id)}

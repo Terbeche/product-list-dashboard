@@ -57,10 +57,9 @@ export default function Header({
             </span>
           ))}
         </div>
-        <div className={classes["cart-container"]}>
+        <div className={classes["cart-container"]} onClick={toggleCart}>
             <BsCart2 
               className={classes["cart-button"]}
-              onClick={toggleCart}
               data-testid="cart-btn"
             />
               {cartItemsCount > 0 && (
@@ -68,17 +67,13 @@ export default function Header({
               )}
         </div>
       </nav>
-      {isCartOpen && (
-        <>
-          <div onClick={toggleCart}></div>
-          <CartOverlay 
-            cartItems={cartItems}
-            updateQuantity={updateQuantity}
-            placeOrder={placeOrder}
-            updateAttributes={updateAttributes}
-          />
-        </>
-      )}
+      <CartOverlay 
+        cartItems={cartItems}
+        updateQuantity={updateQuantity}
+        placeOrder={placeOrder}
+        updateAttributes={updateAttributes}
+        cartState={isCartOpen ? "open" : "close"}
+      />
     </header>
   );
 }

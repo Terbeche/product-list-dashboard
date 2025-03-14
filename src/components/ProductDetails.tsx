@@ -126,7 +126,7 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
         <button 
           className={classes["add-to-cart"]} 
           onClick={handleAddToCart}
-          disabled={!isAllAttributesSelected()}
+          disabled={!isAllAttributesSelected() || !product.inStock}
         >
           ADD TO CART
         </button>        

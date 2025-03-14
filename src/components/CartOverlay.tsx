@@ -15,12 +15,14 @@ interface CartOverlayProps {
   placeOrder?: () => void;
   currency?: { label: string; symbol: string };
   updateAttributes?: (productId: string, currentAttributes: Record<string, string>, attributeId: string, newValue: string) => void;
+  cartState?: string;
 }
 
 export default function CartOverlay({ 
   cartItems = [],
   updateQuantity = () => {}, 
   placeOrder = () => {},
+  cartState = '',
   currency = { label: "USD", symbol: "$" },
   updateAttributes = () => {}
 }: CartOverlayProps) {
@@ -35,7 +37,7 @@ export default function CartOverlay({
   const itemText = totalItems === 1 ? '1 Item' : `${totalItems} Items`;
 
   return (
-    <div className={classes["cart-overlay"]}>
+    <div className={`${classes["cart-overlay"]} ${classes[cartState]}`}>
       <div className={classes["cart-header"]}>
         <span className={classes["cart-title"]}>My Bag: {itemText}</span>
       </div>
