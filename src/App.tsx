@@ -18,7 +18,6 @@ function App() {
     cartItemsCount, 
     addToCart, 
     updateQuantity, 
-    updateCartItemAttributes, 
     placeOrder 
   } = useCart();
 
@@ -32,7 +31,6 @@ function App() {
         cartItems={cartItems}
         updateQuantity={updateQuantity}
         placeOrder={placeOrder}
-        updateAttributes={updateCartItemAttributes}
       />
       <main>
         <Routes>

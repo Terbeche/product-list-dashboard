@@ -14,7 +14,6 @@ interface CartOverlayProps {
   updateQuantity?: (productId: string, attributes: Record<string, string>, change: number) => void;
   placeOrder?: () => void;
   currency?: { label: string; symbol: string };
-  updateAttributes?: (productId: string, currentAttributes: Record<string, string>, attributeId: string, newValue: string) => void;
   cartState?: string;
 }
 
@@ -23,8 +22,7 @@ export default function CartOverlay({
   updateQuantity = () => {}, 
   placeOrder = () => {},
   cartState = '',
-  currency = { label: "USD", symbol: "$" },
-  updateAttributes = () => {}
+  currency = { label: "USD", symbol: "$" }
 }: CartOverlayProps) {
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => {
@@ -63,9 +61,6 @@ export default function CartOverlay({
                     <AttributeSelector
                       attribute={attribute}
                       selectedValue={item.selectedAttributes[attribute.id] || ''}
-                      onChange={(attributeId, newValue) => 
-                        updateAttributes(item.product.id, item.selectedAttributes, attributeId, newValue)
-                      }
                     />
                   </div>
                 ))}

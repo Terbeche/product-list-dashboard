@@ -4,7 +4,7 @@ import classes from './AttributeSelector.module.css';
 interface AttributeSelectorProps {
   attribute: AttributeSet;
   selectedValue: string;
-  onChange: (attributeId: string, itemId: string) => void;
+  onChange?: (attributeId: string, itemId: string) => void;
 }
 
 export default function AttributeSelector({ 
@@ -25,8 +25,7 @@ export default function AttributeSelector({
             ${isColorAttribute ? classes["color-box"] : ''}
           `}
           style={isColorAttribute ? { backgroundColor: item.value } : {}}
-          onClick={() => onChange(attribute.id, item.id)}
-          data-testid={`attribute-${attribute.id.toLowerCase()}-${item.id.toLowerCase()}`}
+          onClick={() => onChange && onChange(attribute.id, item.id)}
         >
           {!isColorAttribute && item.value}
         </div>
