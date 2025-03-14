@@ -55,15 +55,14 @@ export default function Header({
             </span>
           ))}
         </div>
-        <div className={classes["cart-container"]} onClick={toggleCart}>
+        <button data-testid="cart-btn" className={classes["cart-container"]} onClick={toggleCart}>
             <BsCart2 
               className={classes["cart-button"]}
-              data-testid="cart-btn"
             />
               {cartItemsCount > 0 && (
                 <span className={classes["cart-count"]}>{cartItemsCount}</span>
               )}
-        </div>
+        </button>
       </nav>
       <CartOverlay 
         cartItems={cartItems}

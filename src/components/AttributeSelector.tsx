@@ -24,6 +24,10 @@ export default function AttributeSelector({
             ${selectedValue === item.id ? classes["selected"] : ''}
             ${isColorAttribute ? classes["color-box"] : ''}
           `}
+          data-testid={selectedValue === item.id 
+            ? `cart-item-attribute-${attribute.name.toLowerCase()}-${item.id.toLowerCase()}-selected` 
+            : `cart-item-attribute-${attribute.name.toLowerCase()}-${item.id.toLowerCase()}`
+          }
           style={isColorAttribute ? { backgroundColor: item.value } : {}}
           onClick={() => onChange && onChange(attribute.id, item.id)}
         >

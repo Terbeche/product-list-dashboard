@@ -56,6 +56,8 @@
     cursor: pointer;
     display: flex;
     margin-right: 3rem;
+    background-color: rgb(253, 253, 253);
+    border: none;
 }
 
 .cart-button {

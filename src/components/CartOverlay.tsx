@@ -55,7 +55,7 @@ export default function CartOverlay({
                   <div 
                     key={attribute.id} 
                     className={classes["attribute-container"]}
-                    data-testid={`cart-item-attribute-${attribute.id.toLowerCase()}`}
+                    data-testid={`cart-item-attribute-${attribute.name.toLowerCase()}`}
                   >
                     <p className={classes["attribute-name"]}>{attribute.name}:</p>
                     <AttributeSelector

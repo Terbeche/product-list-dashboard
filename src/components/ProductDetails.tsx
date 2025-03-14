@@ -116,6 +116,7 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
           <div 
             key={attribute.id} 
             className={classes["attribute-container"]}
+            data-testid={`product-attribute-${attribute.name.toLowerCase()}`}
           >
             <label className={classes["attribute-label"]}>{attribute.name}:</label>
             {renderAttributeSelector(attribute as AttributeSet)}
@@ -127,10 +128,11 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
           className={classes["add-to-cart"]} 
           onClick={handleAddToCart}
           disabled={!isAllAttributesSelected() || !product.inStock}
+          data-testid="add-to-cart"
         >
           ADD TO CART
         </button>        
-        <div className={classes["product-description"]}>{parse(product.description)}</div>
+        <div className={classes["product-description"]} data-testid="product-description">{parse(product.description)}</div>
       </div>
     </div>
   );
