@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import  CartOverlay from './CartOverlay';
-import  classes from './Header.module.css';
+import CartOverlay from './CartOverlay';
+import classes from './Header.module.css';
 import { BsCart2 } from 'react-icons/bs';
 import { CartItem } from '../types/CartItem';
 import { Category } from '../types/Category';
+import { useCartContext } from '../context/CartContext';
 interface HeaderProps {
   categories: Category[];
   activeCategory: string;
@@ -25,12 +25,8 @@ export default function Header({
   placeOrder
 }: HeaderProps) {
   
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { isCartOpen, toggleCart } = useCartContext();
   const navigate = useNavigate();
-
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
@@ -70,6 +66,7 @@ export default function Header({
         placeOrder={placeOrder}
         cartState={isCartOpen ? "open" : "close"}
       />
+      {isCartOpen && <div className={classes["overlay-backdrop"]} onClick={toggleCart}></div>}
     </header>
   );
 }

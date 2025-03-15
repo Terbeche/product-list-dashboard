@@ -5,6 +5,7 @@ import { AttributeSet } from '../types/Attribute';
 import classes from './ProductDetails.module.css';
 import parse from 'html-react-parser';
 import AttributeSelector from './AttributeSelector';
+import { useCartContext } from '../context/CartContext';
 
 interface ProductDetailsProps {
   products: Product[];
@@ -16,6 +17,7 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
   const [product, setProduct] = useState<Product | null>(null);
   const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { openCart } = useCartContext();
 
   useEffect(() => {
     const foundProduct = products.find(p => p.id === productId);
@@ -42,6 +44,7 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
   const handleAddToCart = () => {
     if (product && isAllAttributesSelected()) {
       addToCart(product, selectedAttributes);
+      openCart();
     }
   };
 
