@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CartOverlay from './CartOverlay';
 import classes from './Header.module.css';
 import { BsCart2 } from 'react-icons/bs';
@@ -26,19 +26,18 @@ export default function Header({
 }: HeaderProps) {
   
   const { isCartOpen, toggleCart } = useCartContext();
-  const navigate = useNavigate();
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
-    navigate(`/category/${category}`);
   };
   return (
     <header className={classes.header}>
       <nav className={classes.navbar}>
         <div className={classes.categories}>
           {categories.map((category) => (
-            <span
+            <Link
               key={category.name}
+              to={`/category/${category.name}`}
               className={`${classes.category} ${activeCategory === category.name ? `${classes.active}` : ''}`}
               onClick={() => handleCategoryClick(category.name)}
               data-testid={
@@ -48,7 +47,7 @@ export default function Header({
               }
             >
               {category.name.toUpperCase()}
-            </span>
+            </Link>
           ))}
         </div>
         <button data-testid="cart-btn" className={classes["cart-container"]} onClick={toggleCart}>
