@@ -28,7 +28,10 @@ export default function AttributeSelector({
             ? `cart-item-attribute-${attribute.name.toLowerCase()}-${item.id.toLowerCase()}-selected` 
             : `cart-item-attribute-${attribute.name.toLowerCase()}-${item.id.toLowerCase()}`
           }
-          style={isColorAttribute ? { backgroundColor: item.value } : {}}
+          style={{
+            ...(isColorAttribute ? { backgroundColor: item.value } : {}),
+            ...(onChange ? { cursor: 'pointer' } : {})
+          }}
           onClick={() => onChange && onChange(attribute.id, item.id)}
         >
           {!isColorAttribute && item.value}
