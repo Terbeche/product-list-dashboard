@@ -38,14 +38,14 @@
 }
 
 .category:hover {
-    background-color:  rgb(39, 223, 39);
+    background-color:  #5ECE7B;
 }
 
 .active {
-    color: rgb(39, 223, 39);
+    color:  #5ECE7B;
     font-weight: bold;
     transform: scale(1.05);
-    border-bottom: solid rgb(39, 223, 39);
+    border-bottom: solid  #5ECE7B;
 }
 
 .active:hover {

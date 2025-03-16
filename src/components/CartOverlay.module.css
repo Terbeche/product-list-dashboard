@@ -165,7 +165,7 @@
   .place-order-button {
     width: 100%;
     padding: 0.75rem;
-    background: #26a822;
+    background:  #5ECE7B;
     color: white;
     border: none;
     border-radius: 4px;
@@ -178,7 +178,7 @@
   }
   
   .place-order-button:hover {
-    background: #219a1e;
+    background:  #5ECE7B;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(38, 168, 34, 0.3);
   }

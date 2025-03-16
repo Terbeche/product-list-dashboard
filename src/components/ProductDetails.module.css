@@ -131,7 +131,6 @@
 .product-price {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #d9534f;
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
 }
@@ -147,7 +146,7 @@
 
 .add-to-cart {
   width: 100%;
-  background-color: #2fcc2a;
+  background-color: #5ECE7B;
   color: white;
   font-weight: 600;
   font-size: 1rem;
@@ -163,7 +162,7 @@
 }
 
 .add-to-cart:hover {
-  background-color: #26a822;
+  background-color:  #5ECE7B;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(47, 204, 42, 0.4);
 }

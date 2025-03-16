@@ -31,7 +31,7 @@
 .attribute-box.selected {
   background-color: #000;
   color: white;
-  border-color: #26a822;
+  border-color: #5ECE7B;
   box-shadow: 0 0 0 1px #fff, 0 0 0 3px #26a822;
   transform: translateY(-1px);
 }
