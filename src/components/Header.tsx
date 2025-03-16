@@ -37,7 +37,7 @@ export default function Header({
           {categories.map((category) => (
             <Link
               key={category.name}
-              to={`/category/${category.name}`}
+              to={`/${category.name}`}
               className={`${classes.category} ${activeCategory === category.name ? `${classes.active}` : ''}`}
               onClick={() => handleCategoryClick(category.name)}
               data-testid={

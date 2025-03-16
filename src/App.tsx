@@ -11,7 +11,7 @@ function App() {
     categories, 
     products, 
     activeCategory, 
-    setActiveCategory
+    setActiveCategory 
   } = useProducts();
 
   const { 
@@ -27,7 +27,7 @@ function App() {
       <CartProvider>
         <Header
           categories={categories}
-          activeCategory={activeCategory} 
+          activeCategory={activeCategory}
           setActiveCategory={setActiveCategory} 
           cartItemsCount={cartItemsCount}
           cartItems={cartItems}
@@ -36,9 +36,9 @@ function App() {
         />
         <main>
           <Routes>
-            <Route path="/" element={<Navigate to={`/category/${activeCategory}`} />} />
+            <Route path="/" element={<Navigate to={`/${activeCategory}`} />} />
             <Route 
-              path="/category/:categoryName" 
+              path="/:categoryName"
               element={
                 <ProductListing 
                   products={products} 
