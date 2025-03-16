@@ -37,7 +37,7 @@
 }
 
 .color-box {
-  width: 1rem !important; 
+  min-width: 1rem !important; 
   height: 1rem !important;
   border-radius: 50%;
   display: flex;
