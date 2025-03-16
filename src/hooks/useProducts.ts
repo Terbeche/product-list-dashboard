@@ -14,7 +14,8 @@ export const useProducts = () => {
   const {
     data: prodData 
   } = useQuery(GET_PRODUCTS, {
-    variables: { category: activeCategory }
+    variables: { category: activeCategory },
+    fetchPolicy: "no-cache"
   });
 
   const categories: Category[] = catData?.categories || [];
