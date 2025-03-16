@@ -25,11 +25,6 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
       setProduct(foundProduct);
       
       const defaultAttributes: Record<string, string> = {};
-      foundProduct.attributes.forEach(attr => {
-        if (attr.items.length > 0) {
-          defaultAttributes[attr.id] = attr.items[0].id;
-        }
-      });
       setSelectedAttributes(defaultAttributes);
     }
   }, [productId, products]);
