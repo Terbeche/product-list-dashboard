@@ -25,8 +25,8 @@ export default function AttributeSelector({
             ${isColorAttribute ? classes["color-box"] : ''}
           `}
           data-testid={selectedValue === item.id 
-            ? `cart-item-attribute-${attribute.name.toLowerCase()}-${item.id.toLowerCase()}-selected` 
-            : `cart-item-attribute-${attribute.name.toLowerCase()}-${item.id.toLowerCase()}`
+            ? `product-attribute-${attribute.name.toLowerCase()}-${item.id}-selected` 
+            : `product-attribute-${attribute.name.toLowerCase()}-${item.id}`
           }
           style={{
             ...(isColorAttribute ? { backgroundColor: item.value } : {}),

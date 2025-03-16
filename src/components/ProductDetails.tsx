@@ -130,8 +130,8 @@ export default function ProductDetails({ products, addToCart }: ProductDetailsPr
         <button 
           className={classes["add-to-cart"]} 
           onClick={handleAddToCart}
-          disabled={!isAllAttributesSelected() || !product.inStock}
           data-testid="add-to-cart"
+          disabled={!isAllAttributesSelected() || !product.inStock}
         >
           ADD TO CART
         </button>        

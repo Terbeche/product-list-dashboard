@@ -35,7 +35,9 @@ export default function CartOverlay({
   const itemText = totalItems === 1 ? '1 Item' : `${totalItems} Items`;
 
   return (
-    <div className={`${classes["cart-overlay"]} ${classes[cartState]}`}>
+    <div className={`${classes["cart-overlay"]} ${classes[cartState]}`}
+         data-testid="cart-overlay"
+    >
       <div className={classes["cart-header"]}>
         <span className={classes["cart-title"]}>My Bag: {itemText}</span>
       </div>
