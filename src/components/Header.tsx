@@ -13,6 +13,7 @@ interface HeaderProps {
   cartItems: CartItem[];
   updateQuantity: (productId: string, attributes: Record<string, string>, change: number) => void;
   placeOrder: () => void;
+  isSubmittingOrder: boolean;
 }
 
 export default function Header({
@@ -22,7 +23,8 @@ export default function Header({
   cartItemsCount,
   cartItems,
   updateQuantity,
-  placeOrder
+  placeOrder,
+  isSubmittingOrder
 }: HeaderProps) {
   
   const { isCartOpen, toggleCart } = useCartContext();
@@ -66,6 +68,7 @@ export default function Header({
           updateQuantity={updateQuantity}
           placeOrder={placeOrder}
           cartState="open"
+          isSubmittingOrder={isSubmittingOrder}
         />
       )}
       

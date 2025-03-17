@@ -19,7 +19,8 @@ function App() {
     cartItemsCount, 
     addToCart, 
     updateQuantity, 
-    placeOrder 
+    placeOrder,
+    isSubmittingOrder
   } = useCart();
 
   return (
@@ -33,6 +34,7 @@ function App() {
           cartItems={cartItems}
           updateQuantity={updateQuantity}
           placeOrder={placeOrder}
+          isSubmittingOrder={isSubmittingOrder}
         />
         <main>
           <Routes>
