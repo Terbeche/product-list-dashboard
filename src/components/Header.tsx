@@ -59,12 +59,16 @@ export default function Header({
               )}
         </button>
       </nav>
-      <CartOverlay 
-        cartItems={cartItems}
-        updateQuantity={updateQuantity}
-        placeOrder={placeOrder}
-        cartState={isCartOpen ? "open" : "close"}
-      />
+      
+      {isCartOpen && (
+        <CartOverlay 
+          cartItems={cartItems}
+          updateQuantity={updateQuantity}
+          placeOrder={placeOrder}
+          cartState="open"
+        />
+      )}
+      
       {isCartOpen && <div className={classes["overlay-backdrop"]} onClick={toggleCart}></div>}
     </header>
   );
