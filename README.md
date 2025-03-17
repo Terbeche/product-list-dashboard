@@ -1,54 +1,64 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![](https://img.shields.io/badge/Mostefa-Terbeche-red)
 
-Currently, two official plugins are available:
+# Product-App-Dashboard
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> This project is a web application that uses React to interact with an API created using PHP and MySQL. The application allows the user to view a list of available products, add products to the cart, and place orders.
 
-## Expanding the ESLint configuration
+## Screen shots
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ![](./screen/screen1.png)
+- ![](./screen/screen2.png)
+- ![](./screen/screen3.png)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+
+## Built With
+
+- ![](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
+- ![](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+- ![](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+- ![](https://img.shields.io/badge/JSON-9400D3?style=flat-square&logo=json&logoColor=white)
+- ![](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)
+- ![](https://shields.io/badge/react-black?logo=react&style=for-the-badge)
+- ![](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+- ![](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)
+- ![](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+- ![](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)
+
+## Live Demo (if available)
+
+[Live Demo Link](https://product-list-dashboard.vercel.app/)
+
+## Author
+
+👤 **Terbeche Mostefa**
+
+- GitHub: [@githubhandle](https://github.com/Terbeche)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/mustapha-terbeche/)
+
+## Setup
+
+If you wish to run the project locally, please do the following:
+
+1.- Clone the repository to your local machine. - **`git clone https://github.com/Terbeche/product-list-dashboard.git`** - **`cd product-list-dashboard`**
+
+2.- Install Node.js and npm if you haven't already.
+To install Node.js, follow the instructions on [Node.js](https://nodejs.org/en/).
+
+To install npm with the necessary dependencies, run the following command in your terminal:
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3.- Once you have the setup and the project locally, you can run the project using the following command in your terminal:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run build
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+4.- and if you want to watch the changes live, run the following command (it will run the website on localhost:5173):
+
+```bash
+npm run dev
 ```
