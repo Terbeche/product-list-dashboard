@@ -15,6 +15,7 @@ interface CartOverlayProps {
   placeOrder?: () => void;
   currency?: { label: string; symbol: string };
   cartState?: string;
+  isSubmittingOrder?: boolean;
 }
 
 export default function CartOverlay({ 
@@ -22,7 +23,8 @@ export default function CartOverlay({
   updateQuantity = () => {}, 
   placeOrder = () => {},
   cartState = '',
-  currency = { label: "USD", symbol: "$" }
+  currency = { label: "USD", symbol: "$" },
+  isSubmittingOrder = false
 }: CartOverlayProps) {
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => {
@@ -107,11 +109,11 @@ export default function CartOverlay({
         
         <div className={classes["cart-actions"]}>
           <button 
-            className={classes["place-order-button"]} 
+            className={`${classes["place-order-button"]} ${isSubmittingOrder ? classes["submitting"] : ''}`}
             onClick={placeOrder}
-            disabled={cartItems.length === 0}
+            disabled={cartItems.length === 0 || isSubmittingOrder}
           >
-            PLACE ORDER
+            {isSubmittingOrder ? 'PLACING ORDER...' : 'PLACE ORDER'}
           </button>
         </div>
       </div>

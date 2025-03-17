@@ -11,6 +11,8 @@ export const useCart = () => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
+  const [isSubmittingOrder, setIsSubmittingOrder] = useState(false);
+
   const [createOrder, { loading: orderLoading, error: orderError }] = useMutation(CREATE_ORDER);
 
   // Calculate cart items count
@@ -58,24 +60,33 @@ export const useCart = () => {
     setCartItems(updatedCartItems);
   };
 
-  const placeOrder = () => {
-    const orderItems = cartItems.map(item => JSON.stringify({
-      product_id: item.product.id,
-      quantity: item.quantity,
-      selected_attributes: item.selectedAttributes
-    }));
+  const placeOrder = async () => {
+    if (isSubmittingOrder) return;
     
-    return createOrder({
-      variables: {
-        items: orderItems
-      }
-    }).then(() => {
+    try {
+      setIsSubmittingOrder(true);
+      
+      const orderItems = cartItems.map(item => JSON.stringify({
+        product_id: item.product.id,
+        quantity: item.quantity,
+        selected_attributes: item.selectedAttributes
+      }));
+      
+      await createOrder({
+        variables: {
+          items: orderItems
+        }
+      });
+      
       console.log("Order placed:", cartItems);
       setCartItems([]);
-    }).catch(err => {
+      
+    } catch (err) {
       console.error('Error creating order:', err);
       throw err;
-    });
+    } finally {
+      setIsSubmittingOrder(false);
+    }
   };
 
   return {
@@ -85,6 +96,7 @@ export const useCart = () => {
     updateQuantity,
     placeOrder,
     orderLoading,
-    orderError
+    orderError,
+    isSubmittingOrder
   };
 };
