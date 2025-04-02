@@ -77,10 +77,13 @@ export default function ProductListing({
             )}
             </div>
             {product.inStock && hoveredProduct === product.id && (
-                 <BsCart2 
-                 className={classes["quick-shop-button"]}
-                 onClick={(e) => handleQuickShop(e, product)}
-                />
+              <button 
+                className={classes["quick-shop-button"]}
+                onClick={(e) => handleQuickShop(e, product)}
+                aria-label={`Quick shop for ${product.name}`}
+              >
+                <BsCart2 className={classes["quick-shop-button-icon"]}/>
+              </button>
             )}
             <div className={classes["product-info"]}>
               <p className={classes["product-name"]}>{product.name}</p>
