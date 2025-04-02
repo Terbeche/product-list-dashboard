@@ -42,7 +42,7 @@
   .cart-items {
     flex-grow: 1;
     overflow-y: auto;
-    padding-right: 0.5rem;
+    padding: 0.5rem;
     margin-bottom: 1rem;
   }
   
