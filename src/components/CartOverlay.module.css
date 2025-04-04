@@ -1,12 +1,10 @@
 .cart-overlay {
     position: fixed;
-    top: 5rem;
+    top: 4rem;
     right: 2rem;
     width: 25rem;
-    height: 80%;
+    height: 75%;
     background: white;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
@@ -36,7 +34,7 @@
   .cart-title {
     font-size: 1.125rem;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0px;
   }
 
   .cart-items {
@@ -44,16 +42,16 @@
     overflow-y: auto;
     padding: 0.5rem;
     margin-bottom: 1rem;
+    gap: 5rem;
   }
   
   .cart-item {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid #f0f0f0;
     padding-bottom: 1.5rem;
     position: relative;
-    min-height: 150px;
+    min-height: 120px;
   }
   
   .item-details {
@@ -65,22 +63,28 @@
   }
   
   .item-name {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.3px;
+    margin-bottom: 0.25rem;
+    margin-top: 0rem;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0px;
   }
   
   .item-price {
     font-size: 0.875rem;
     color: #333;
     font-weight: 500;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
+    margin-top: 0rem;
   }
   
   .attribute-container {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
   }
   
   .attribute-name {
@@ -97,6 +101,14 @@
     align-items: center;
     justify-content: space-between;
     margin: 0 1rem;
+    color:  #1D1F22;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0px;
   }
   
   .quantity-button {
@@ -130,7 +142,6 @@
     min-width: 6rem;
     max-width: 6rem;
     overflow: hidden;
-    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,38 +155,42 @@
   
   .cart-footer {
     border-top: 1px solid #f0f0f0;
-    padding-top: 1rem;
-    margin-top: auto;
   }
   
   .cart-total {
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
-    font-weight: 600;
     margin-bottom: 1.25rem;
     padding: 0.5rem 0;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 160%;
+    letter-spacing: 0px;
   }
   
   .place-order-button {
     width: 100%;
-    padding: 0.75rem;
+    padding: 16px 32px;
     background:  #5ECE7B;
     color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(38, 168, 34, 0.2);
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: 0px;
+    line-height: 120%;
   }
   
   .place-order-button:hover {
     background:  #5ECE7B;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(38, 168, 34, 0.3);
   }
   
   .place-order-button:disabled {
@@ -208,4 +223,24 @@
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 576px) {
+    .cart-overlay {
+      position: fixed;
+      top: 4rem;
+      right: 0rem;
+      width: 90%;
+      height: 80%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      overflow-y: auto;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+    }
   }

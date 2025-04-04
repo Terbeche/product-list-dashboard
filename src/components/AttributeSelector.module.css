@@ -7,8 +7,7 @@
 
 .attribute-box {
   text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid #aaa;
   transition: all 0.2s ease;
   height: 2rem;
   min-width: 2rem;
@@ -18,35 +17,33 @@
   font-weight: 500;
   font-size: 0.875rem;
   background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   padding: 0.3rem;
 }
 
 .attribute-box:hover {
   border-color: #aaa;
   transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .attribute-box.selected {
   background-color: #000;
   color: white;
-  border-color: #5ECE7B;
-  box-shadow: 0 0 0 1px #fff, 0 0 0 3px #26a822;
   transform: translateY(-1px);
 }
 
 .color-box {
-  min-width: 1rem !important; 
-  height: 1rem !important;
-  border-radius: 50%;
+  min-width: 0.6rem !important; 
+  height: 0.6rem !important;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   padding: 0.3rem;
+}
+
+.color-box.selected {
+  border-color: #5ECE7B;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 3px #26a822;
 }

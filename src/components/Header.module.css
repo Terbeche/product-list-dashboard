@@ -1,8 +1,7 @@
 .header {
     position: fixed;
-    padding: 1rem 2rem;
+    padding: 1rem 4rem;
     display: flex;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     z-index: 1000;
     background-color: white;
@@ -16,7 +15,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    padding: 0rem 10rem 0rem 0rem;
 }
 
 .categories {
@@ -24,22 +24,23 @@
     align-items: flex-start;
     justify-content: flex-start;
     gap: 1rem;
-    color: black;
+    color: #1D1F22;
 }
 
 .category {
     cursor: pointer;
     padding: 0.5rem 1rem;
-    color: #000000;
-    font-size: 1rem;
-    font-weight: 500;
+    color: #1D1F22;
     text-transform: capitalize;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
-}
-
-.category:hover {
-    background-color:  #5ECE7B;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0px;
 }
 
 .active {
@@ -49,21 +50,16 @@
     border-bottom: solid  #5ECE7B;
 }
 
-.active:hover {
-    background-color:  rgb(218, 208, 187);
-}
 
 .cart-container {
     cursor: pointer;
     display: flex;
-    margin-right: 3rem;
     background-color: rgb(253, 253, 253);
     border: none;
 }
 
 .cart-button {
-    color: rgb(0, 0, 0);
-    border-radius: 8px;
+    color: #43464E;
     font-size: 2rem;
     font-weight: 500;
     cursor: pointer;
@@ -72,13 +68,19 @@
 
 .cart-count {
     color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0);
-    padding: 0.2rem 0.5rem;
+    background-color: #1D1F22;
+    padding: 0.5rem 0.5rem;
     border-radius: 50%;
-    font-size: 0.8rem;
     align-self: center;
     margin-left: -0.7rem;
     margin-top: -1rem;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0px;
 }
 
 .overlay-backdrop {
@@ -87,6 +89,6 @@
     left: 0;
     width: 100%;
     height: calc(100% - 5rem);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(57, 55, 72, 0.22);
     z-index: 999;
 }
