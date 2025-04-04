@@ -27,14 +27,24 @@ export default function Header({
   isSubmittingOrder
 }: HeaderProps) {
   
-  const { isCartOpen, toggleCart } = useCartContext();
+  const { isCartOpen, toggleCart, closeCart } = useCartContext();
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
   };
+  
+  const handleCartButtonClick = (e: React.MouseEvent) => {
+    // Stop event from bubbling up to parent elements
+    e.stopPropagation();
+    toggleCart();
+  };
+
   return (
     <header className={classes.header}>
-      <nav className={classes.navbar}>
+      <nav 
+        className={classes.navbar}
+        onClick={closeCart}
+      >
         <div className={classes.categories}>
           {categories.map((category) => (
             <Link
@@ -52,7 +62,11 @@ export default function Header({
             </Link>
           ))}
         </div>
-        <button data-testid="cart-btn" className={classes["cart-container"]} onClick={toggleCart}>
+        <button
+          data-testid="cart-btn" 
+          className={classes["cart-container"]} 
+          onClick={handleCartButtonClick}
+        >
             <BsCart2 
               className={classes["cart-button"]}
             />
@@ -72,7 +86,7 @@ export default function Header({
         />
       )}
       
-      {isCartOpen && <div className={classes["overlay-backdrop"]} onClick={toggleCart}></div>}
+      {isCartOpen && <div className={classes["overlay-backdrop"]} onClick={closeCart}></div>}
     </header>
   );
 }
